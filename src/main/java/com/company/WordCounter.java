@@ -10,19 +10,17 @@ public class WordCounter {
     private String name;
     private String flag;
 
-    WordCounter(String name, String flag){
+    WordCounter(String name, String flag) {
         this.name = name;
         this.flag = flag;
-        function(name,flag);
+        function(name, flag);
     }
 
     public void function(String name, String flag) {
 
         try {
             Scanner read = new Scanner(new File(name));
-            int numberOfLines = 0;
-            int numberOfWords = 0;
-            int numberOfCharacters = 0;
+            int numberOfLines = 0, numberOfWords = 0, numberOfCharacters = 0;
             while (read.hasNextLine()) {
                 String line = read.nextLine();
                 numberOfLines++;
@@ -48,7 +46,6 @@ public class WordCounter {
                 FileNotFoundException e) {
             System.out.println("file doesn't exist");
         }
-
     }
 
     private static int counterWord(String string) {
