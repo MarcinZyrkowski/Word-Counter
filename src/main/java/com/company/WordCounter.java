@@ -7,42 +7,38 @@ import java.util.Scanner;
 
 public class WordCounter {
 
-    public static void function() {
-        System.out.println("please write name of file");
+    private String name;
+    private String flag;
 
-        Scanner sc = new Scanner(System.in);
-        String plik = sc.nextLine();
+    WordCounter(String name, String flag){
+        this.name = name;
+        this.flag = flag;
+        function(name,flag);
+    }
 
-        System.out.println("please write flag");
-        System.out.println("-l : to count lines");
-        System.out.println("-w : to count words");
-        System.out.println("-c : to count characters");
-
-        Scanner flag = new Scanner(System.in);
-        String flagS = flag.nextLine();
+    public void function(String name, String flag) {
 
         try {
-            Scanner odczyt = new Scanner(new File(plik));
+            Scanner read = new Scanner(new File(name));
             int numberOfLines = 0;
             int numberOfWords = 0;
             int numberOfCharacters = 0;
-            while (odczyt.hasNextLine()) {
-                String line = odczyt.nextLine();
+            while (read.hasNextLine()) {
+                String line = read.nextLine();
                 numberOfLines++;
                 numberOfWords += counterWord(line);
                 numberOfCharacters += counterCharacter(line);
             }
 
-
-            System.out.print(plik + " : ");
-            switch (flagS) {
-                case "-l":
+            System.out.print(name + " : ");
+            switch (flag) {
+                case "l":
                     System.out.print("number of lines : " + numberOfLines);
                     break;
-                case "-w":
+                case "w":
                     System.out.print("number of words : " + numberOfWords);
                     break;
-                case "-c":
+                case "c":
                     System.out.print("number of characters : " + numberOfCharacters);
                     break;
                 default:
