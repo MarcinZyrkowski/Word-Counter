@@ -18,33 +18,39 @@ public class WordCounter {
 
     public void function(String name, String flag) {
 
-        try {
-            Scanner read = new Scanner(new File(name));
-            int numberOfLines = 0, numberOfWords = 0, numberOfCharacters = 0;
-            while (read.hasNextLine()) {
-                String line = read.nextLine();
-                numberOfLines++;
-                numberOfWords += counterWord(line);
-                numberOfCharacters += counterCharacter(line);
-            }
+        if(flag.equals("l") || flag.equals("w") || flag.equals("c") ) {
+            try {
+                Scanner read = new Scanner(new File(name));
+                int numberOfLines = 0;
+                int numberOfWords = 0;
+                int numberOfCharacters = 0;
+                while (read.hasNextLine()) {
+                    String line = read.nextLine();
+                    numberOfLines++;
+                    numberOfWords += counterWord(line);
+                    numberOfCharacters += counterCharacter(line);
+                }
 
-            System.out.print(name + " : ");
-            switch (flag) {
-                case "l":
-                    System.out.print("number of lines : " + numberOfLines);
-                    break;
-                case "w":
-                    System.out.print("number of words : " + numberOfWords);
-                    break;
-                case "c":
-                    System.out.print("number of characters : " + numberOfCharacters);
-                    break;
-                default:
-                    System.out.println("wrong flag");
+                System.out.print(name + " : ");
+                switch (flag) {
+                    case "l":
+                        System.out.print("number of lines : " + numberOfLines);
+                        break;
+                    case "w":
+                        System.out.print("number of words : " + numberOfWords);
+                        break;
+                    case "c":
+                        System.out.print("number of characters : " + numberOfCharacters);
+                        break;
+                    default:
+                        break;
+                }
+            } catch (
+                    FileNotFoundException e) {
+                System.out.println("file doesn't exist");
             }
-        } catch (
-                FileNotFoundException e) {
-            System.out.println("file doesn't exist");
+        }else{
+            System.out.println("wrong flag");
         }
     }
 
