@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class WordCounter {
@@ -13,14 +12,14 @@ public class WordCounter {
     WordCounter(String name, String flag) {
         this.name = name;
         this.flag = flag;
-        function(name, flag);
     }
 
-    public void function(String name, String flag) {
+    public void Count() {
 
         if(flag.equals("l") || flag.equals("w") || flag.equals("c") ) {
             try {
-                Scanner read = new Scanner(new File(name));
+                File file = new File(name);
+                Scanner read = new Scanner(file.getAbsoluteFile());
                 int numberOfLines = 0;
                 int numberOfWords = 0;
                 int numberOfCharacters = 0;
@@ -47,6 +46,7 @@ public class WordCounter {
                 }
             } catch (
                     FileNotFoundException e) {
+                System.out.println(e.getLocalizedMessage());
                 System.out.println("file doesn't exist");
             }
         }else{
@@ -58,14 +58,10 @@ public class WordCounter {
 
         Scanner scanner = new Scanner(string);
         int words = 0;
-        while (true) {
-            try {
+        while (scanner.hasNext()) {
                 scanner.next();
                 words++;
-            } catch (NoSuchElementException e) {
-                break;
             }
-        }
         return words;
     }
 
@@ -73,14 +69,9 @@ public class WordCounter {
 
         Scanner scanner = new Scanner(string);
         int characters = 0;
-        while (true) {
-            try {
+        while (scanner.hasNext()) {
                 String a = scanner.next();
-
                 characters += a.length();
-            } catch (NoSuchElementException e) {
-                break;
-            }
         }
         return characters;
     }
