@@ -9,14 +9,14 @@ public class WordCounter {
     private String name;
     private String flag;
 
-    WordCounter(String name, String flag) {
+    public WordCounter(String name, String flag) {
         this.name = name;
         this.flag = flag;
     }
 
-    public void Count() {
+    public int Count() {
 
-        if(flag.equals("l") || flag.equals("w") || flag.equals("c") ) {
+        if (flag.equals("l") || flag.equals("w") || flag.equals("c")) {
             try {
                 File file = new File(name);
                 Scanner read = new Scanner(file.getAbsoluteFile());
@@ -34,23 +34,25 @@ public class WordCounter {
                 switch (flag) {
                     case "l":
                         System.out.print("number of lines : " + numberOfLines);
-                        break;
+                        return numberOfLines;
                     case "w":
                         System.out.print("number of words : " + numberOfWords);
-                        break;
+                        return numberOfWords;
                     case "c":
                         System.out.print("number of characters : " + numberOfCharacters);
-                        break;
+                        return numberOfCharacters;
                     default:
-                        break;
+                        return -1;
                 }
-            } catch (
-                    FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 System.out.println(e.getLocalizedMessage());
                 System.out.println("file doesn't exist");
+                return -1;
             }
-        }else{
+        } else {
             System.out.println("wrong flag");
+            return -1;
+
         }
     }
 
@@ -59,9 +61,9 @@ public class WordCounter {
         Scanner scanner = new Scanner(string);
         int words = 0;
         while (scanner.hasNext()) {
-                scanner.next();
-                words++;
-            }
+            scanner.next();
+            words++;
+        }
         return words;
     }
 
@@ -70,8 +72,8 @@ public class WordCounter {
         Scanner scanner = new Scanner(string);
         int characters = 0;
         while (scanner.hasNext()) {
-                String a = scanner.next();
-                characters += a.length();
+            String a = scanner.next();
+            characters += a.length();
         }
         return characters;
     }
