@@ -8,6 +8,11 @@ public class Main {
         System.out.println("write name of file: ");
         Scanner scanner = new Scanner(System.in);
         String nameOfFile = scanner.nextLine();
+
+        StringBuilder stringBuilder = new StringBuilder("/Users/mzyrkowski/IdeaProjects/Ważne - zadania/007_Word_Counter_New/");
+        stringBuilder.append(nameOfFile);
+        String path = stringBuilder.toString();
+
         System.out.println("write flag");
 
         System.out.println("number of lines : l");
@@ -17,7 +22,7 @@ public class Main {
         Scanner scannerTwo = new Scanner(System.in);
         String flag = scannerTwo.nextLine();
 
-        WordCounter wordCounter = new WordCounter(nameOfFile, flag);
+        WordCounter wordCounter = new WordCounter(path, flag);
         wordCounter.Count();
 
     }
