@@ -1,29 +1,18 @@
 package com.company;
 
-import java.util.Scanner;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("write name of file: ");
-        Scanner scanner = new Scanner(System.in);
-        String nameOfFile = scanner.nextLine();
+        Counter counter = new Counter();
+        int numberOfLines = counter.countLines(new File("/Users/mzyrkowski/IdeaProjects/Ważne - zadania/007_Word_Counter_New/try.txt"));
+        int numberOfWords = counter.countWords(new File("/Users/mzyrkowski/IdeaProjects/Ważne - zadania/007_Word_Counter_New/try.txt"));
+        int numberOfCharacters = counter.countCharacters(new File("/Users/mzyrkowski/IdeaProjects/Ważne - zadania/007_Word_Counter_New/try.txt"));
+        System.out.println(numberOfLines);
+        System.out.println(numberOfWords);
+        System.out.println(numberOfCharacters);
 
-        StringBuilder stringBuilder = new StringBuilder("/Users/mzyrkowski/IdeaProjects/Ważne - zadania/007_Word_Counter_New/");
-        stringBuilder.append(nameOfFile);
-        String path = stringBuilder.toString();
-
-        System.out.println("write flag");
-
-        System.out.println("number of lines : l");
-        System.out.println("number of words : w");
-        System.out.println("number of characters : c");
-
-        Scanner scannerTwo = new Scanner(System.in);
-        String flag = scannerTwo.nextLine();
-
-        WordCounter wordCounter = new WordCounter(path, flag);
-        wordCounter.Count();
 
     }
 }
