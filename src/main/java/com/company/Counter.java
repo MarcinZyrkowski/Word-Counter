@@ -17,7 +17,7 @@ public class Counter implements WordCounter {
                 numberOfLines++;
             }
             return numberOfLines;
-        } catch ( FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             return -1;
         }
 
@@ -54,36 +54,12 @@ public class Counter implements WordCounter {
     }
 
     private static int countWordsInOneLine(String string) {
-
-        Scanner scanner = new Scanner(string);
-        int words = 0;
-        while (scanner.hasNext()) {
-            scanner.next();
-            words++;
-        }
-        return words;
+        return string.split("\\s").length;
     }
 
     private static int countCharacterInOneLine(String string) {
-
-        Scanner scanner = new Scanner(string);
-        int characters = 0;
-        while (scanner.hasNext()) {
-            String a = scanner.next();
-            characters += a.length();
-        }
-        return characters;
+        return string.replaceAll("\\s", "").toCharArray().length;
     }
 
-    /*
-    private static String getPath(String pathFromUser) {
-        Path path = Paths.get(pathFromUser);
-        if (path.isAbsolute()) {
-            return path.toString();
-        } else {
-            return path.resolve(".").toString();
-        }
-    }
-     */
 
 }

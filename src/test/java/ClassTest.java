@@ -6,26 +6,9 @@ import org.junit.Test;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class ClassTest {
 
-
-    @Test
-    public void lookingForPath() {
-        Path path = Paths.get("src/test/java/x.txt");
-        String string = path.toAbsolutePath().toString();
-        File file = new File(string);
-
-        try {
-            Scanner read = new Scanner(file);
-            while (read.hasNextLine()) {
-                System.out.println(read.nextLine());
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
 
     @Test
     public void existsAndNotEmpty() {
@@ -83,31 +66,6 @@ public class ClassTest {
         int numberOfCharacters = counter.countCharacters(file);
         Assert.assertEquals(0, numberOfCharacters);
 
-    }
-
-    @Test
-    public void testCharactersMethod() {
-        String string = "12345 12345 12345";
-        Scanner scanner = new Scanner(string);
-        int characters = 0;
-        while (scanner.hasNext()) {
-            String a = scanner.next();
-            characters += a.length();
-        }
-        Assert.assertEquals(characters, string.replaceAll("\\s", "").toCharArray().length);
-    }
-
-    @Test
-    public void testWordsMethod() {
-        String string = "12345 12345 12345";
-        Scanner scanner = new Scanner(string);
-        int words = 0;
-        while (scanner.hasNext()) {
-            scanner.next();
-            words++;
-        }
-
-        Assert.assertEquals(words, string.split("\\s").length);
     }
 
 
