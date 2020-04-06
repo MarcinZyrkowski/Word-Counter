@@ -1,27 +1,23 @@
 package com.company;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+@Getter
+@Setter
 @Component
 public class Counter implements WordCounter {
 
-    int numberOfLines;
-    int numberOfWords;
-    int numberOfCharacters;
+    File file;
 
     public Counter() {
     }
 
-
-    Counter(File file) {
-        numberOfLines = countLines(file);
-        numberOfWords = countWords(file);
-        numberOfCharacters = countCharacters(file);
-    }
 
     @Override
     public int countLines(File file) {
@@ -78,8 +74,9 @@ public class Counter implements WordCounter {
         return string.replaceAll("\\s", "").toCharArray().length;
     }
 
+    @Override
     public String show() {
-        return "Lines: " + numberOfLines + " Words: " + numberOfWords + " Characters: " + numberOfCharacters;
+        return "Lines: " + countLines(file) + " Words: " + countWords(file) + " Characters: " + countCharacters(file);
     }
 
 }
