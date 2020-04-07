@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 public class KeepData {
 
-
     public File convert(String string) {
 
         File file = new File("tmpFile");
@@ -13,7 +12,6 @@ public class KeepData {
         try (PrintWriter writer = new PrintWriter("tmpFile")) {
             writer.println(string);
         } catch (Exception e) {
-            e.getMessage();
         }
 
         return file;
@@ -25,8 +23,6 @@ public class KeepData {
             file.delete();
         } catch (Exception e) {
         }
-
     }
-
 
 }

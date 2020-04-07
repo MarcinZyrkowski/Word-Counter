@@ -1,7 +1,6 @@
 package com.company;
 
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 @RestController
 public class Controller {
-
 
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -26,27 +27,18 @@ public class Controller {
         return "hello world";
     }
 
-/*
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String print(@RequestBody String path) {
-        ((Counter)counter).setFile(new File(path));
-        return counter.show();
-    }
-*/
-
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public HashMap<String, Object> print(@RequestBody String text) {
 
-        KeepData keepData = new KeepData();
-        ((Counter) counter).setFile(keepData.convert(text));
-        String string = counter.show();
-        keepData.removeFile();
+        int numberOfLines = counter.countLines(text);
+        int numberOfWords = counter.countWords(text);
+        int numberOfCharacters = counter.countCharacters(text);
 
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("data", string);
+        LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+        map.put("Lines", numberOfLines);
+        map.put("Words",numberOfWords);
+        map.put("Characters", numberOfCharacters);
         return map;
-
 
     }
 }

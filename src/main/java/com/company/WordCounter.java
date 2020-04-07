@@ -10,6 +10,12 @@ public interface WordCounter {
 
     int countCharacters(File file);
 
+    int countLines(String string);
+
+    int countWords(String string);
+
+    int countCharacters(String string);
+
     String show();
 
 }

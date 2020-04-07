@@ -15,9 +15,21 @@ public class Counter implements WordCounter {
 
     File file;
 
-    public Counter() {
+    @Override
+    public int countLines(String string) {
+        return string.split(System.getProperty("line.separator")).length;
     }
 
+    @Override
+    public int countWords(String string) {
+        return string.split("\\s").length;
+    }
+
+    @Override
+    public int countCharacters(String string) {
+        String temporaryString = string.replaceAll("\\n", "");
+        return temporaryString.replaceAll("\\s", "").toCharArray().length;
+    }
 
     @Override
     public int countLines(File file) {
