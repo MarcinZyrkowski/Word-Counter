@@ -4,91 +4,33 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.stream.Stream;
 
 @Getter
 @Setter
 @Component
 public class Counter implements WordCounter {
 
-    File file;
 
     @Override
-    public int countLines(String string) {
-        return string.split(System.getProperty("line.separator")).length;
-    }
-
-    @Override
-    public int countWords(String string) {
-        return string.split("\\s").length;
+    public long countLines(String string) {
+        return Stream.of(string.split("\\n")).count();
     }
 
     @Override
-    public int countCharacters(String string) {
-        String temporaryString = string.replaceAll("\\n", "");
-        return temporaryString.replaceAll("\\s", "").toCharArray().length;
+    public long countWords(String string) {
+        return Stream.of(string.split("\\s")).count();
     }
 
     @Override
-    public int countLines(File file) {
-
-        try {
-            Scanner read = new Scanner(file);
-            int numberOfLines = 0;
-            while (read.hasNextLine()) {
-                read.nextLine();
-                numberOfLines++;
-            }
-            return numberOfLines;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
-
-    }
-
-    @Override
-    public int countWords(File file) {
-        try {
-            Scanner read = new Scanner(file);
-            int numberOfWords = 0;
-            while (read.hasNextLine()) {
-                numberOfWords += countWordsInOneLine(read.nextLine());
-            }
-            return numberOfWords;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
-
-    }
-
-    @Override
-    public int countCharacters(File file) {
-
-        try {
-            Scanner read = new Scanner(file);
-            int numberOfCharacters = 0;
-            while (read.hasNextLine()) {
-                numberOfCharacters += countCharacterInOneLine(read.nextLine());
-            }
-            return numberOfCharacters;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
-    }
-
-    private static int countWordsInOneLine(String string) {
-        return string.split("\\s").length;
-    }
-
-    private static int countCharacterInOneLine(String string) {
-        return string.replaceAll("\\s", "").toCharArray().length;
-    }
-
-    @Override
-    public String show() {
-        return "Lines: " + countLines(file) + " Words: " + countWords(file) + " Characters: " + countCharacters(file);
+    public long countCharacters(String string) {
+        return Stream.of(string
+                .replaceAll("\\n","")
+                .replaceAll("\\s","")
+                .chars()
+                .mapToObj(ch->(char)ch)
+                .toArray(Character[]::new))
+                .count();
     }
 
 }

@@ -8,12 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-
 @RestController
 public class Controller {
 
@@ -28,17 +22,13 @@ public class Controller {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public HashMap<String, Object> print(@RequestBody String text) {
+    public Response print(@RequestBody String text) {
 
-        int numberOfLines = counter.countLines(text);
-        int numberOfWords = counter.countWords(text);
-        int numberOfCharacters = counter.countCharacters(text);
+        Response response = new Response();
+        response.setLines(counter.countLines(text));
+        response.setWords(counter.countWords(text));
+        response.setCharacters(counter.countCharacters(text));
 
-        LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-        map.put("Lines", numberOfLines);
-        map.put("Words",numberOfWords);
-        map.put("Characters", numberOfCharacters);
-        return map;
-
+        return response;
     }
 }

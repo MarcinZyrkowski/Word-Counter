@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 public class ClassTest {
 
+    /*
 
     @Test
     public void existsAndNotEmpty() {
@@ -69,4 +70,6 @@ public class ClassTest {
     }
 
 
+
+     */
 }
