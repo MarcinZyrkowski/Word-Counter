@@ -19,16 +19,16 @@ public class Counter implements WordCounter {
 
     @Override
     public long countWords(String string) {
-        return Stream.of(string.split("\\s")).count();
+        return Stream.of(string
+                .split("\\s+")).count();
     }
 
     @Override
     public long countCharacters(String string) {
         return Stream.of(string
-                .replaceAll("\\n","")
-                .replaceAll("\\s","")
+                .replaceAll("[\\n|\\s]", "")
                 .chars()
-                .mapToObj(ch->(char)ch)
+                .mapToObj(ch -> (char) ch)
                 .toArray(Character[]::new))
                 .count();
     }

@@ -13,9 +13,6 @@ public class Controller {
 
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    @Autowired
-    private WordCounter counter;
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hello() {
         return "hello world";
@@ -23,6 +20,8 @@ public class Controller {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Response print(@RequestBody String text) {
+
+        WordCounter counter = new Counter();
 
         Response response = new Response();
         response.setLines(counter.countLines(text));
