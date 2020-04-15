@@ -40,3 +40,5 @@ buildNumber.properties
 *.idea
 *.iml
 *.MF
+Trash.java
+CounterStepDefs.java
