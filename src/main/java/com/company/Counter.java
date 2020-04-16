@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 @Component
 public class Counter implements WordCounter {
 
-
     @Override
     public long countLines(String string) {
         return Stream.of(string.split("\\n")).count();
@@ -32,5 +31,4 @@ public class Counter implements WordCounter {
                 .toArray(Character[]::new))
                 .count();
     }
-
 }
