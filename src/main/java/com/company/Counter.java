@@ -1,65 +1,34 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
+import java.util.stream.Stream;
+
+@Getter
+@Setter
+@Component
 public class Counter implements WordCounter {
 
     @Override
-    public int countLines(File file) {
-
-        try {
-            Scanner read = new Scanner(file);
-            int numberOfLines = 0;
-            while (read.hasNextLine()) {
-                read.nextLine();
-                numberOfLines++;
-            }
-            return numberOfLines;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
-
+    public long countLines(String string) {
+        return Stream.of(string.split("\\n")).count();
     }
 
     @Override
-    public int countWords(File file) {
-        try {
-            Scanner read = new Scanner(file);
-            int numberOfWords = 0;
-            while (read.hasNextLine()) {
-                numberOfWords += countWordsInOneLine(read.nextLine());
-            }
-            return numberOfWords;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
-
+    public long countWords(String string) {
+        return Stream.of(string
+                .split("\\s+")).count();
     }
 
     @Override
-    public int countCharacters(File file) {
-
-        try {
-            Scanner read = new Scanner(file);
-            int numberOfCharacters = 0;
-            while (read.hasNextLine()) {
-                numberOfCharacters += countCharacterInOneLine(read.nextLine());
-            }
-            return numberOfCharacters;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
+    public long countCharacters(String string) {
+        return Stream.of(string
+                .replaceAll("[\\n|\\s]", "")
+                .chars()
+                .mapToObj(ch -> (char) ch)
+                .toArray(Character[]::new))
+                .count();
     }
-
-    private static int countWordsInOneLine(String string) {
-        return string.split("\\s").length;
-    }
-
-    private static int countCharacterInOneLine(String string) {
-        return string.replaceAll("\\s", "").toCharArray().length;
-    }
-
-
 }

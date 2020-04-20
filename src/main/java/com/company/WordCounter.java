@@ -1,13 +1,11 @@
 package com.company;
 
-import java.io.File;
-
 public interface WordCounter {
 
-    int countLines(File file);
+    long countLines(String text);
 
-    int countWords(File file);
+    long countWords(String text);
 
-    int countCharacters(File file);
+    long countCharacters(String text);
 
 }
