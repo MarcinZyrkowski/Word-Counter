@@ -1,75 +1,45 @@
-import com.company.Counter;
-import com.company.WordCounter;
-import org.junit.Assert;
+import com.company.dto.CounterResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ClassTest {
 
-    /*
+    public static final String baseUrl = "http://localhost";
 
     @Test
-    public void existsAndNotEmpty() {
+    public void counterCountingTest() throws JsonProcessingException {
 
-        Path path = Paths.get("src/test/java/testFileWith3Lines5Words9Characters.txt");
-        String string = path.toAbsolutePath().toString();
-        File file = new File(string);
+        String text = "xxx\noo\nii tt";
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        WordCounter counter = new Counter();
-        int numberOfCharacters = counter.countCharacters(file);
-        Assert.assertNotEquals(-1, numberOfCharacters);
-        Assert.assertNotEquals(0, numberOfCharacters);
+        Response response = given()
+                .baseUri(baseUrl)
+                .contentType(ContentType.JSON)
+                .body(text)
+                .post("/");
 
+        CounterResponse counterResponse = objectMapper.readValue(response.body().asString(), CounterResponse.class);
+        assertThat(counterResponse.getLines()).isEqualTo(3);
+        assertThat(counterResponse.getWords()).isEqualTo(4);
+        assertThat(counterResponse.getCharacters()).isEqualTo(9);
     }
 
     @Test
-    public void fileDoesntExist() {
+    public void getHelloWorld() {
+        Response response = given()
+                .baseUri(baseUrl)
+                .contentType(ContentType.JSON)
+                .get("/");
 
-        Path path = Paths.get("src/test/java/wrong_file.txt");
-        String string = path.toAbsolutePath().toString();
-        File file = new File(string);
-
-        WordCounter counter = new Counter();
-        int numberOfCharacters = counter.countCharacters(file);
-        Assert.assertEquals(numberOfCharacters, -1);
-
+        assertThat(response.body().asString()).isEqualTo("hello world");
     }
 
-    @Test
-    public void checkTestFile() {
-
-        Path path = Paths.get("src/test/java/testFileWith3Lines5Words9Characters.txt");
-        String string = path.toAbsolutePath().toString();
-        File file = new File(string);
-
-        WordCounter counter = new Counter();
-        int numberOfLines = counter.countLines(file);
-        int numberOfWords = counter.countWords(file);
-        int numberOfCharacters = counter.countCharacters(file);
-
-        Assert.assertEquals(numberOfLines, 3);
-        Assert.assertEquals(numberOfWords, 5);
-        Assert.assertEquals(numberOfCharacters, 9);
-
-    }
-
-    @Test
-    public void existingEmptyFile() {
-
-        Path path = Paths.get("src/test/java/emptyFile.txt");
-        String string = path.toAbsolutePath().toString();
-        File file = new File(string);
-
-        WordCounter counter = new Counter();
-        int numberOfCharacters = counter.countCharacters(file);
-        Assert.assertEquals(0, numberOfCharacters);
-
-    }
-
-
-
-     */
 }
