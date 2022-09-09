@@ -1,5 +1,6 @@
 package com.company.services;
 
+import com.company.dto.CounterDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,14 @@ public class CounterServiceImpl implements WordCounterService {
                         .toArray(Character[]::new))
                 .count();
     }
+
+    @Override
+    public CounterDto countAllText(String text) {
+        return CounterDto.builder()
+                .lines(countLines(text))
+                .words(countWords(text))
+                .characters(countCharacters(text))
+                .build();
+    }
+
 }

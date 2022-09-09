@@ -1,4 +1,4 @@
-import com.company.dto.CounterResponse;
+import com.company.dto.CounterDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
@@ -26,10 +26,10 @@ public class ClassTest {
                 .body(text)
                 .post("/");
 
-        CounterResponse counterResponse = objectMapper.readValue(response.body().asString(), CounterResponse.class);
-        assertThat(counterResponse.getLines()).isEqualTo(3);
-        assertThat(counterResponse.getWords()).isEqualTo(4);
-        assertThat(counterResponse.getCharacters()).isEqualTo(9);
+        CounterDto counterDto = objectMapper.readValue(response.body().asString(), CounterDto.class);
+        assertThat(counterDto.getLines()).isEqualTo(3);
+        assertThat(counterDto.getWords()).isEqualTo(4);
+        assertThat(counterDto.getCharacters()).isEqualTo(9);
     }
 
     @Test

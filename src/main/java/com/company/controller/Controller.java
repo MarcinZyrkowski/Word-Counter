@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.dto.CounterResponse;
+import com.company.dto.CounterDto;
 import com.company.services.WordCounterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +22,7 @@ public class Controller {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<CounterResponse> print(@RequestBody String text) {
-        CounterResponse counterResponse = CounterResponse.builder()
-                .lines(counterService.countLines(text))
-                .words(counterService.countWords(text))
-                .characters(counterService.countCharacters(text))
-                .build();
-        return new ResponseEntity<>(counterResponse, HttpStatus.OK);
+    public ResponseEntity<CounterDto> print(@RequestBody String text) {
+        return new ResponseEntity<>(counterService.countAllText(text), HttpStatus.OK);
     }
 }
