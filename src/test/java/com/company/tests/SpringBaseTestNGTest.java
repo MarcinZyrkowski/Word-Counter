@@ -19,5 +19,4 @@ public class SpringBaseTestNGTest extends AbstractTestNGSpringContextTests {
     protected void springTestContextPrepareTestInstance() throws Exception {
         super.springTestContextPrepareTestInstance();
     }
-
 }
