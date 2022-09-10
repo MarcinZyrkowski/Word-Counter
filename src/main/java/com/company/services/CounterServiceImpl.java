@@ -12,19 +12,16 @@ import java.util.stream.Stream;
 @Service
 public class CounterServiceImpl implements WordCounterService {
 
-    @Override
-    public Long countLines(String string) {
+    private Long countLines(String string) {
         return Stream.of(string.split("\\n")).count();
     }
 
-    @Override
-    public Long countWords(String string) {
+    private Long countWords(String string) {
         return Stream.of(string
                 .split("\\s+")).count();
     }
 
-    @Override
-    public Long countCharacters(String string) {
+    private Long countCharacters(String string) {
         return Stream.of(string
                         .replaceAll("[\\n|\\s]", "")
                         .chars()
@@ -34,8 +31,8 @@ public class CounterServiceImpl implements WordCounterService {
     }
 
     @Override
-    public CounterDto countAllText(String text) {
-        if (text == null){
+    public CounterDto calculate(String text) {
+        if (text == null) {
             throw new RuntimeException("Cannot count lines, words, characters from null Object");
         }
 

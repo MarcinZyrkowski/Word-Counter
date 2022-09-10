@@ -23,6 +23,6 @@ public class Controller {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<CounterDto> print(@RequestBody String text) {
-        return new ResponseEntity<>(counterService.countAllText(text), HttpStatus.OK);
+        return new ResponseEntity<>(counterService.calculate(text), HttpStatus.OK);
     }
 }
