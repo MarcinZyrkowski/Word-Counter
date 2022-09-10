@@ -21,7 +21,6 @@ public class WordCounterTestNGTest extends SpringBaseTestNGTest {
         stringJoiner.add(RandomStringUtils.random(10, true, false));
         stringJoiner.add(RandomStringUtils.random(5, true, false));
         String text = stringJoiner.toString();
-        text = null;
 
         CounterDto counterDto = counterServiceInterface.sendText(text);
         assertThat(counterDto.getLines()).isEqualTo(2);
