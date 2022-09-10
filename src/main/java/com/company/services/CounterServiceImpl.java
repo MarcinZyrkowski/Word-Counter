@@ -45,5 +45,4 @@ public class CounterServiceImpl implements WordCounterService {
                 .characters(countCharacters(text))
                 .build();
     }
-
 }
