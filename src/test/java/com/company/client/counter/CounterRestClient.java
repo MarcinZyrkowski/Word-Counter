@@ -1,8 +1,10 @@
-package client.counter;
+package com.company.client.counter;
 
-import client.RestClient;
+import com.company.client.RestClient;
 import io.restassured.response.Response;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CounterRestClient extends RestClient implements CounterClient {
 
     @Override

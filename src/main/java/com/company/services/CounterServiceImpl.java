@@ -35,6 +35,10 @@ public class CounterServiceImpl implements WordCounterService {
 
     @Override
     public CounterDto countAllText(String text) {
+        if (text == null){
+            throw new RuntimeException("Cannot count lines, words, characters from null Object");
+        }
+
         return CounterDto.builder()
                 .lines(countLines(text))
                 .words(countWords(text))

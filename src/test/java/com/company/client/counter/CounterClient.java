@@ -1,4 +1,4 @@
-package client.counter;
+package com.company.client.counter;
 
 import io.restassured.response.Response;
 

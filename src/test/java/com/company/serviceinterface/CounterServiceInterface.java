@@ -1,14 +1,18 @@
-package serviceinterface;
+package com.company.serviceinterface;
 
-import client.counter.CounterRestClient;
+import com.company.client.counter.CounterRestClient;
 import com.company.dto.CounterDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 public class CounterServiceInterface {
 
-    CounterRestClient counterRestClient = new CounterRestClient();
-    ObjectMapper objectMapper = new ObjectMapper();
+    private final CounterRestClient counterRestClient;
+    private final ObjectMapper objectMapper;
 
     public String getMessage() {
         return counterRestClient.getMessage().body().asString();
