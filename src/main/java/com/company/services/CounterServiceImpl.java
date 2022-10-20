@@ -1,6 +1,7 @@
 package com.company.services;
 
-import com.company.dto.CounterDto;
+import com.company.dto.CounterResponseDto;
+import com.company.dto.TextToCountDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
@@ -31,15 +32,15 @@ public class CounterServiceImpl implements WordCounterService {
     }
 
     @Override
-    public CounterDto calculate(String text) {
-        if (text == null) {
+    public CounterResponseDto calculate(TextToCountDto textToCountDto) {
+        if (textToCountDto == null || textToCountDto.getText() == null) {
             throw new RuntimeException("Cannot count lines, words, characters from null Object");
         }
 
-        return CounterDto.builder()
-                .lines(countLines(text))
-                .words(countWords(text))
-                .characters(countCharacters(text))
+        return CounterResponseDto.builder()
+                .lines(countLines(textToCountDto.getText()))
+                .words(countWords(textToCountDto.getText()))
+                .characters(countCharacters(textToCountDto.getText()))
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.company.client.counter;
 
+import com.company.dto.TextToCountDto;
 import io.restassured.response.Response;
 
 public interface CounterClient {
@@ -8,6 +9,6 @@ public interface CounterClient {
 
     Response getMessage();
 
-    Response postSendText(String text);
+    Response postSendText(TextToCountDto textToCountDto);
 
 }

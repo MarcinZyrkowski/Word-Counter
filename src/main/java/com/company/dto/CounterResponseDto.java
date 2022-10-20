@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class CounterDto {
+public class CounterResponseDto {
 
     @JsonProperty("numberOfLines")
     private long lines;

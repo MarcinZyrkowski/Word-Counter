@@ -1,6 +1,7 @@
 package com.company.controller;
 
-import com.company.dto.CounterDto;
+import com.company.dto.CounterResponseDto;
+import com.company.dto.TextToCountDto;
 import com.company.services.WordCounterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,16 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
+    private final String GREETING_MESSAGE = "hello world";
+
     @Autowired
     WordCounterService counterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String hello() {
-        return "hello world";
+    public ResponseEntity<String> hello() {
+        return new ResponseEntity<>(GREETING_MESSAGE, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<CounterDto> print(@RequestBody String text) {
-        return new ResponseEntity<>(counterService.calculate(text), HttpStatus.OK);
+    public ResponseEntity<CounterResponseDto> print(@RequestBody TextToCountDto textToCountDto) {
+        return new ResponseEntity<>(counterService.calculate(textToCountDto), HttpStatus.OK);
     }
 }

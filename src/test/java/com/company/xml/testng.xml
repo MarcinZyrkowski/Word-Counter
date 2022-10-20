@@ -3,7 +3,7 @@
 
     <test name="Word counter App">
         <classes>
-            <class name="com.company.tests.SpringBaseTestNGTest"></class>
+            <class name="com.company.tests.counter.WordCounterTest"></class>
         </classes>
     </test>
 </suite>

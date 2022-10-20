@@ -1,11 +1,15 @@
 package com.company.serviceinterface;
 
 import com.company.client.counter.CounterRestClient;
-import com.company.dto.CounterDto;
+import com.company.dto.CounterResponseDto;
+import com.company.dto.TextToCountDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
 @RequiredArgsConstructor
@@ -15,13 +19,16 @@ public class CounterServiceInterface {
     private final ObjectMapper objectMapper;
 
     public String getMessage() {
-        return counterRestClient.getMessage().body().asString();
+        var response = counterRestClient.getMessage();
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
+        return response.body().asString();
     }
 
     @SneakyThrows
-    public CounterDto sendText(String text) {
-        var response = counterRestClient.postSendText(text);
-        return objectMapper.readValue(response.body().asString(), CounterDto.class);
+    public CounterResponseDto sendText(TextToCountDto textToCountDto) {
+        var response = counterRestClient.postSendText(textToCountDto);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
+        return objectMapper.readValue(response.body().asString(), CounterResponseDto.class);
     }
 
 }

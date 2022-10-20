@@ -24,15 +24,12 @@ public abstract class RestClient {
 
     private String serializePojo(Object pojo) {
         ObjectMapper objectMapper = new ObjectMapper();
+
+        if (pojo == null) {
+            throw new RuntimeException("Null POJO provided");
+        }
+
         String body = null;
-        if (pojo instanceof String) {
-            return (String) pojo;
-        }
-
-        if (pojo == null){
-            return null;
-        }
-
         try {
             body = objectMapper.writeValueAsString(pojo);
         } catch (Exception e) {

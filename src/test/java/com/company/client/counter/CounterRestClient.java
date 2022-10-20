@@ -1,6 +1,7 @@
 package com.company.client.counter;
 
 import com.company.client.RestClient;
+import com.company.dto.TextToCountDto;
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,8 @@ public class CounterRestClient extends RestClient implements CounterClient {
     }
 
     @Override
-    public Response postSendText(String text) {
-        return basicRequestSpecification(text)
+    public Response postSendText(TextToCountDto textToCountDto) {
+        return basicRequestSpecification(textToCountDto)
                 .post(PROCESS);
     }
 }

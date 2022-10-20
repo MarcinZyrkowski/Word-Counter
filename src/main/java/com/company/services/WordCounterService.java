@@ -1,9 +1,10 @@
 package com.company.services;
 
-import com.company.dto.CounterDto;
+import com.company.dto.CounterResponseDto;
+import com.company.dto.TextToCountDto;
 
 public interface WordCounterService {
 
-    CounterDto calculate(String text);
+    CounterResponseDto calculate(TextToCountDto textToCountDto);
 
 }
