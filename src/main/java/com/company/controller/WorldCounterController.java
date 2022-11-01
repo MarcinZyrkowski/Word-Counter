@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Controller {
+public class WorldCounterController {
 
     private final String GREETING_MESSAGE = "hello world";
 
@@ -20,12 +20,12 @@ public class Controller {
     WordCounterService counterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<String> hello() {
+    public ResponseEntity<String> getGreetingMessage() {
         return new ResponseEntity<>(GREETING_MESSAGE, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<CounterResponseDto> print(@RequestBody TextToCountDto textToCountDto) {
+    public ResponseEntity<CounterResponseDto> count(@RequestBody TextToCountDto textToCountDto) {
         return new ResponseEntity<>(counterService.calculate(textToCountDto), HttpStatus.OK);
     }
 }
