@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class WorldCounterController {
+public class WordCounterController {
 
     private final String GREETING_MESSAGE = "hello world";
 
