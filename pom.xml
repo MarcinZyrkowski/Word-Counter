@@ -22,11 +22,11 @@
         <json.version>20220924</json.version>
         <gson.version>2.9.0</gson.version>
         <lombok.version>1.18.24</lombok.version>
-        <spring-boot-starter-web.version>2.7.5</spring-boot-starter-web.version>
+        <spring-boot-starter-web.version>3.0.0</spring-boot-starter-web.version>
         <assertj-core.version>3.23.1</assertj-core.version>
-        <spring-boot-starter-test.version>2.7.4</spring-boot-starter-test.version>
-        <rest-assured.version>5.2.0</rest-assured.version>
-        <testng.version>7.6.1</testng.version>
+        <spring-boot-starter-test.version>3.0.0</spring-boot-starter-test.version>
+        <rest-assured.version>5.3.0</rest-assured.version>
+        <testng.version>7.5</testng.version>
         <jackson-databind.version>2.14.0</jackson-databind.version>
     </properties>
 
