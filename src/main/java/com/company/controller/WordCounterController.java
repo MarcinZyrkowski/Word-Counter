@@ -17,7 +17,7 @@ public class WordCounterController {
     private final String GREETING_MESSAGE = "hello world";
 
     @Autowired
-    WordCounterService counterService;
+    protected WordCounterService counterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<String> getGreetingMessage() {

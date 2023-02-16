@@ -19,11 +19,8 @@ public abstract class RestClient {
     }
 
     public RequestSpecification basicRequestSpecification(Object pojo) {
-        return given()
-                .baseUri(Environment.BASE_URL.getUrl())
-                .contentType(ContentType.JSON)
-                .body(serializePojo(pojo))
-                .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+        return basicRequestSpecification()
+                .body(serializePojo(pojo));
     }
 
     private String serializePojo(Object pojo) {
