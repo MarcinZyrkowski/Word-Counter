@@ -19,6 +19,7 @@ public class CounterServiceInterface {
     private final CounterRestClient counterRestClient;
     private final ObjectMapper objectMapper;
 
+    @Step("Get message")
     public String getMessage() {
         var response = counterRestClient.getMessage();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
