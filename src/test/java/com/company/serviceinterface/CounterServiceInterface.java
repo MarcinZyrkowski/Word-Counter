@@ -4,6 +4,7 @@ import com.company.client.counter.CounterRestClient;
 import com.company.dto.CounterResponseDto;
 import com.company.dto.TextToCountDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class CounterServiceInterface {
     }
 
     @SneakyThrows
+    @Step("Send text: {textToCountDto.text}")
     public CounterResponseDto sendText(TextToCountDto textToCountDto) {
         var response = counterRestClient.postSendText(textToCountDto);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());

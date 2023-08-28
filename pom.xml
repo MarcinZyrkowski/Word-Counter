@@ -28,6 +28,9 @@
         <rest-assured.version>5.3.0</rest-assured.version>
         <testng.version>7.7.1</testng.version>
         <jackson-databind.version>2.14.0</jackson-databind.version>
+        <!--allure-->
+        <allure-testng.version>2.20.1</allure-testng.version>
+        <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
     </properties>
 
     <dependencies>
@@ -81,6 +84,37 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
         </dependency>
+
+        <!--allure-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!--allure report-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin-version}</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <!--required to see steps in allure-->
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
