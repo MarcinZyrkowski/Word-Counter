@@ -7,9 +7,11 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import lombok.extern.slf4j.Slf4j;
 
 import static io.restassured.RestAssured.given;
 
+@Slf4j
 public abstract class RestClient {
 
     public RequestSpecification basicRequestSpecification() {
@@ -36,7 +38,7 @@ public abstract class RestClient {
         try {
             body = objectMapper.writeValueAsString(pojo);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         return body;

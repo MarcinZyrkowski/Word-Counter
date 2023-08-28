@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Component
 @RequiredArgsConstructor
 public class CounterServiceInterface {
-
     private final CounterRestClient counterRestClient;
     private final ObjectMapper objectMapper;
 
