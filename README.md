@@ -11,3 +11,11 @@ The main purpose of the app is to count how many lines, words and characters are
 
 3. Generate report
 > allure serve target/allure-results
+
+from folder where you downloaded project or use:
+> mvn allure:serve
+
+or use
+> mvn allure:report
+
+Report will be generated tо directory: `target/site/allure-maven/index.html`
