@@ -2,6 +2,7 @@ package com.company.client;
 
 import com.company.config.Environment;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
@@ -15,6 +16,7 @@ public abstract class RestClient {
         return given()
                 .baseUri(Environment.BASE_URL.getUrl())
                 .contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }
 
