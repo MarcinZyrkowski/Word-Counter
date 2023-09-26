@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <json.version>20220924</json.version>
+        <json.version>20230227</json.version>
         <gson.version>2.9.0</gson.version>
         <lombok.version>1.18.24</lombok.version>
         <spring-boot-starter-web.version>3.0.0</spring-boot-starter-web.version>
