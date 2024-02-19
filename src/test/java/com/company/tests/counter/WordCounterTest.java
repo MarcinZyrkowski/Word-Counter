@@ -29,9 +29,9 @@ public class WordCounterTest extends SpringBaseTestNGTest {
 
     // then
     CounterAssertions.assertThat(response)
-        .verifyLinesNumber(2)
-        .verifyWordsNumber(2)
-        .verifyCharactersNumber(15);
+        .hasLinesNumber(2)
+        .hasWordsNumber(2)
+        .hasCharactersNumber(15);
   }
 
   @Test(description = "Verify get hello world")

@@ -14,21 +14,22 @@ public class CounterAssertions {
     return new CounterAssertions(counterResponseDto);
   }
 
-  public CounterAssertions verifyLinesNumber(long expectedLines) {
+  public CounterAssertions hasLinesNumber(long expectedLines) {
     Assertions.assertThat(counterResponseDto.getLines())
-          .withFailMessage(String.format("It should be %d lines in provided text", expectedLines))
-            .isEqualTo(expectedLines);
+        .withFailMessage(String.format("It should be %d lines in provided text", expectedLines))
+        .isEqualTo(expectedLines);
     return this;
   }
 
-  public CounterAssertions verifyWordsNumber(long expectedWords) {
+  public CounterAssertions hasWordsNumber(long expectedWords) {
     Assertions.assertThat(counterResponseDto.getWords())
+        .as("ss")
         .withFailMessage(String.format("It should be %d words in provided text", expectedWords))
         .isEqualTo(expectedWords);
     return this;
   }
 
-  public CounterAssertions verifyCharactersNumber(long expectedCharacters) {
+  public CounterAssertions hasCharactersNumber(long expectedCharacters) {
     Assertions.assertThat(counterResponseDto.getCharacters())
         .withFailMessage(String.format("It should be %d characters in provided text", expectedCharacters))
         .isEqualTo(expectedCharacters);
