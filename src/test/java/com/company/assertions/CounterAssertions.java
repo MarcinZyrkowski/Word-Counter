@@ -23,7 +23,6 @@ public class CounterAssertions {
 
   public CounterAssertions hasWordsNumber(long expectedWords) {
     Assertions.assertThat(counterResponseDto.getWords())
-        .as("ss")
         .withFailMessage(String.format("It should be %d words in provided text", expectedWords))
         .isEqualTo(expectedWords);
     return this;
