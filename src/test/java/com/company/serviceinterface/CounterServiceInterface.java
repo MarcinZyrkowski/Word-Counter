@@ -5,6 +5,7 @@ import com.company.dto.CounterResponseDto;
 import com.company.dto.TextToCountDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
+import io.restassured.response.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class CounterServiceInterface {
 
     @Step("Get message")
     public String getMessage() {
-        var response = counterRestClient.getMessage();
+        Response response = counterRestClient.getMessage();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
         return response.body().asString();
     }
@@ -28,7 +29,7 @@ public class CounterServiceInterface {
     @SneakyThrows
     @Step("Send text: {textToCountDto.text}")
     public CounterResponseDto sendText(TextToCountDto textToCountDto) {
-        var response = counterRestClient.postSendText(textToCountDto);
+        Response response = counterRestClient.postSendText(textToCountDto);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
         return objectMapper.readValue(response.body().asString(), CounterResponseDto.class);
     }

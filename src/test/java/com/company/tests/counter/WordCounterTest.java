@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Feature("Word counter: counting feature and get feature")
 @Story("Word counter test")
+@Feature("Word counter: counting feature and get feature")
 public class WordCounterTest extends SpringBaseTestNGTest {
   public static final String HELLO_WORLD_MESSAGE = "hello world";
 
