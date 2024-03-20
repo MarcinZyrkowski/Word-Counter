@@ -12,7 +12,7 @@ The main purpose of the app is to count how many lines, words and characters are
 3. Generate report
 > allure serve target/allure-results
 
-from folder where you downloaded project or use:
+from folder where you generated report or use:
 > mvn allure:serve
 
 or use
