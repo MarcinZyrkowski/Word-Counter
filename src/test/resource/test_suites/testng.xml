@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Word Counter suite" verbose="10">
 
-    <test name="Word counter App">
-        <classes>
-            <class name="com.company.tests.counter.WordCounterTest"/>
-        </classes>
-    </test>
+  <test name="Word counter App">
+    <classes>
+      <class name="com.company.tests.counter.WordCounterTest"/>
+    </classes>
+  </test>
 </suite>
         

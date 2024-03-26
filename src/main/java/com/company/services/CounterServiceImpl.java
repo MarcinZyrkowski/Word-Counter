@@ -2,11 +2,10 @@ package com.company.services;
 
 import com.company.dto.CounterResponseDto;
 import com.company.dto.TextToCountDto;
+import java.util.stream.Stream;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -19,16 +18,16 @@ public class CounterServiceImpl implements WordCounterService {
 
     private Long countWords(String string) {
         return Stream.of(string
-                .split("\\s+")).count();
+            .split("\\s+")).count();
     }
 
     private Long countCharacters(String string) {
         return Stream.of(string
-                        .replaceAll("[\\n|\\s]", "")
-                        .chars()
-                        .mapToObj(ch -> (char) ch)
-                        .toArray(Character[]::new))
-                .count();
+                .replaceAll("[\\n|\\s]", "")
+                .chars()
+                .mapToObj(ch -> (char) ch)
+                .toArray(Character[]::new))
+            .count();
     }
 
     @Override
@@ -38,9 +37,9 @@ public class CounterServiceImpl implements WordCounterService {
         }
 
         return CounterResponseDto.builder()
-                .lines(countLines(textToCountDto.getText()))
-                .words(countWords(textToCountDto.getText()))
-                .characters(countCharacters(textToCountDto.getText()))
-                .build();
+            .lines(countLines(textToCountDto.getText()))
+            .words(countWords(textToCountDto.getText()))
+            .characters(countCharacters(textToCountDto.getText()))
+            .build();
     }
 }

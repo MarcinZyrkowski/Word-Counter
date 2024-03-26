@@ -8,30 +8,31 @@ import org.assertj.core.api.Assertions;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CounterAssertions {
 
-  private CounterResponseDto counterResponseDto;
+    private CounterResponseDto counterResponseDto;
 
-  public static CounterAssertions assertThat(CounterResponseDto counterResponseDto) {
-    return new CounterAssertions(counterResponseDto);
-  }
+    public static CounterAssertions assertThat(CounterResponseDto counterResponseDto) {
+        return new CounterAssertions(counterResponseDto);
+    }
 
-  public CounterAssertions hasLinesNumber(long expectedLines) {
-    Assertions.assertThat(counterResponseDto.getLines())
-        .withFailMessage(String.format("It should be %d lines in provided text", expectedLines))
-        .isEqualTo(expectedLines);
-    return this;
-  }
+    public CounterAssertions hasLinesNumber(long expectedLines) {
+        Assertions.assertThat(counterResponseDto.getLines())
+            .withFailMessage(String.format("It should be %d lines in provided text", expectedLines))
+            .isEqualTo(expectedLines);
+        return this;
+    }
 
-  public CounterAssertions hasWordsNumber(long expectedWords) {
-    Assertions.assertThat(counterResponseDto.getWords())
-        .withFailMessage(String.format("It should be %d words in provided text", expectedWords))
-        .isEqualTo(expectedWords);
-    return this;
-  }
+    public CounterAssertions hasWordsNumber(long expectedWords) {
+        Assertions.assertThat(counterResponseDto.getWords())
+            .withFailMessage(String.format("It should be %d words in provided text", expectedWords))
+            .isEqualTo(expectedWords);
+        return this;
+    }
 
-  public CounterAssertions hasCharactersNumber(long expectedCharacters) {
-    Assertions.assertThat(counterResponseDto.getCharacters())
-        .withFailMessage(String.format("It should be %d characters in provided text", expectedCharacters))
-        .isEqualTo(expectedCharacters);
-    return this;
-  }
+    public CounterAssertions hasCharactersNumber(long expectedCharacters) {
+        Assertions.assertThat(counterResponseDto.getCharacters())
+            .withFailMessage(
+                String.format("It should be %d characters in provided text", expectedCharacters))
+            .isEqualTo(expectedCharacters);
+        return this;
+    }
 }

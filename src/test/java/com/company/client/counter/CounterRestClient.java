@@ -11,12 +11,12 @@ public class CounterRestClient extends RestClient implements CounterClient {
     @Override
     public Response getMessage() {
         return basicRequestSpecification()
-                .get(PROCESS);
+            .get(PROCESS);
     }
 
     @Override
     public Response postSendText(TextToCountDto textToCountDto) {
         return basicRequestSpecification(textToCountDto)
-                .post(PROCESS);
+            .post(PROCESS);
     }
 }

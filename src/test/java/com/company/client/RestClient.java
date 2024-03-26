@@ -1,5 +1,7 @@
 package com.company.client;
 
+import static io.restassured.RestAssured.given;
+
 import com.company.config.Environment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.restassured.AllureRestAssured;
@@ -7,11 +9,8 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import lombok.SneakyThrows;
-
 import java.util.Objects;
-
-import static io.restassured.RestAssured.given;
+import lombok.SneakyThrows;
 
 public abstract class RestClient {
 
